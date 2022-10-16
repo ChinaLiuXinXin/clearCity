@@ -1,5 +1,6 @@
 import {
-    admin
+    admin,
+    requests
 } from "./request"
 
 // 查询所有停车场
@@ -24,9 +25,9 @@ const getParkingRecord = (date) => {
 
 // 查询停车场详情
 const getParkingDetails = (id) => {
-    return admin({
+    return requests({
         method:"get",
-        url:"/prod-api/api/park/lot/"+id
+        url:"/park/lot/"+id
     })
 }
 export {

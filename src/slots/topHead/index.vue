@@ -40,6 +40,9 @@ export default {
                 name:this.router_right
             })
         }
+    },
+    beforeMount(){
+        console.log("head"+this.title)
     }
 }
 </script>

@@ -3,13 +3,13 @@ import axios from "axios";
 import nprogress from "nprogress";
 //引入相关进度条的样式
 import "nprogress/nprogress.css";
-// requests是带cookie的
+// requests是带token的
 let requests = axios.create({
     baseURL:'http://218.7.112.123:10001/prod-api/api',
     timeout:5000
 })
 
-// admin不带cookie
+// admin不带token
 let admin = axios.create({
     baseURL:"http://218.7.112.123:10001/prod-api/api",
     timeout:5000

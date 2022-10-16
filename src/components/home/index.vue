@@ -1,9 +1,6 @@
 <template>
   <div class="home">
-    <!-- <keep-alive> -->
       <router-view class="router_view"></router-view>
-    <!-- </keep-alive> -->
-    
     <!-- 底部导航栏 -->
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o" @click="showNav(route_mesage.head)">首页</van-tabbar-item>

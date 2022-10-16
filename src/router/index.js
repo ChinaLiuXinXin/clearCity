@@ -57,14 +57,35 @@ export default new VueRouter({
                             path:"parking",
                             name:"parking",
                             component: ()=> import("@/components/home/allService/park/parking"),
-                            props:{router_left:"head",router_right:"parkingRecord"}
+                            props:(route) => {
+                                return {
+                                    router_left:"head",
+                                    router_right:"parkingRecord",
+                                    title:"停哪儿"}
+                            }
                         },
                         {
                             // 个人停车记录
                             path:"parking_record",
                             name:"parkingRecord",
                             component: ()=> import("@/components/home/allService/park/parkingRecord"),
-                            props:{router_left:"parking",router_right:"parkingRecord"}
+                            props:(route) => {
+                                return {router_left:"parking",router_right:"parkingRecord",title:"停车记录"}
+                            }
+                        },
+                        {
+                            // 停车场详情
+                            path:"parking_details",
+                            name:"parkingDetails",
+                            component:() => import("@/components/home/allService/park/PakingDetails"),
+                            props:(route) => {
+                                return {
+                                    router_left:"parking",
+                                    router_right:"parkingDetails",
+                                    title:"停车场详情",
+                                    parkId:route.params.id
+                                }
+                            }
                         }
                     ]
                 },

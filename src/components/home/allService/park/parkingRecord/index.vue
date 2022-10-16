@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TopHead :router_left="router_left" :router_right="router_right">
+    <TopHead :router_left="router_left" :router_right="router_right" :title="title">
       <div @click="showPopup">
         <span>搜索</span>
         <van-icon name="search" size="18"/>
@@ -22,7 +22,7 @@
       />
     </van-popup>
     <!-- 停车记录 -->
-    <Body :ParkingRecord="ParkingRecord_data"/>
+    <Body :ParkingRecord="ParkingRecord" class="block"/>
   </div>
 </template>
 
@@ -83,6 +83,9 @@ export default {
 
         // 发送请求
         this.$store.dispatch("park/getParkingRecord",this.ParkingData)
+        // 关闭弹出层
+        this.show = false
+        
 
       },
       getFromDate(value){
@@ -105,11 +108,14 @@ export default {
     },
     mounted(){
       // 组件创建完毕以后，将computed中的值赋给data中的ParkingRecord_data
-      this.ParkingRecord_data = this.ParkingRecord
-      console.log(this.title)
+      // this.ParkingRecord_data = this.ParkingRecord
+      console.log("hi",this.title)
     }
 }
 </script>
 
-<style scoped>
+<style>
+.block{
+  padding-bottom: 25%;
+}
 </style>

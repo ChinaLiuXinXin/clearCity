@@ -16,6 +16,9 @@ let mutations = {
     },
     GETPARKINGRECORD(state,data){
         state.ParkingRecord = data
+    },
+    GETPARKDETATLS(state,data){
+        state.ParkingDetails = data
     }
 }
 
@@ -30,6 +33,12 @@ let actions = {
     getParkingRecord({state,dispatch,commit},data){
         getParkingRecord(data).then((response) => {
             commit("GETPARKINGRECORD",response.data.rows)
+        })
+    },
+    // 获取停车场详情
+    getParkingDetails({state,dispatch,commit},id){
+        getParkingDetails(id).then((response) => {
+            commit("GETPARKDETATLS",response.data.data)
         })
     }
 }
@@ -48,6 +57,10 @@ let getters = {
             }
         }
         return nums
+    },
+    ParkingListOf(state,dispatch,commit,getters){
+        // 查看一部分的数组
+        return getters
     },
     ParkingRecord(state){
         // 过滤数组，通过正则表达式

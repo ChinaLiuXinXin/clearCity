@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-list>
+    <van-list class="block">
       <van-cell v-for="item in newsNavList" :key="item.id">
         <!-- 弹性盒布局 -->
         <div class="new" @click="toNewsPage(item.id)">
@@ -90,5 +90,8 @@ export default {
 .new_title{
   width: 60%;
   margin: 10px;
+}
+.block{
+  padding-bottom: 25%;
 }
 </style>

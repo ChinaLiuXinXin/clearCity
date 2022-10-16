@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-cell-group inset class="park">
+    <van-cell-group inset class="park" @click="showDetails">
         <van-cell title="停车场名" :value="data.parkName">
             <van-icon name="award" slot="right-icon" size="18"/>
         </van-cell>
@@ -18,10 +18,21 @@
 </template>
 
 <script>
+// 停车场列表
 export default {
     name:"ParkList",
     props:["data"],
-    
+    methods:{
+        showDetails(){
+            // 跳转到停车场详情
+            this.$router.push({
+                name:"parkingDetails",
+                params:{
+                    id:this.data.id
+                }
+            })
+        }
+    }
 }
 </script>
 
