@@ -10,7 +10,8 @@ import Login from '@/components/Login'
 import User from "@/components/home/user"
 import Head from "@/components/home/head"
 
-export default new VueRouter({
+
+const route =  new VueRouter({
     routes:[
         {
             path:"/home",
@@ -19,7 +20,21 @@ export default new VueRouter({
                 {
                     path:"user",
                     name:"user",
-                    component:User
+                    component:User,
+                    children:[
+                        {
+                            // 用户信息页面
+                            path:"usermesage",
+                            name:"usermesage",
+                            component: ()=> import("@/components/home/user/userMesage")
+                        },
+                        {
+                            //修改密码页面
+                            path:"pswpage",
+                            name:"pswpage",
+                            component: ()=> import("@/components/home/user/PswPage") 
+                        }
+                    ]
                 },
                 {
                     path:"head",
@@ -62,7 +77,8 @@ export default new VueRouter({
                                     router_left:"head",
                                     router_right:"parkingRecord",
                                     title:"停哪儿"}
-                            }
+                            },
+                            meta:{bool:true}
                         },
                         {
                             // 个人停车记录
@@ -87,7 +103,8 @@ export default new VueRouter({
                                 }
                             }
                         }
-                    ]
+                    ],
+                    meta:{data:1}
                 },
                 {
                     // 找房子
@@ -142,6 +159,7 @@ export default new VueRouter({
         },
         {
             path:"/login",
+            name:"login",
             component:Login
         },
         {
@@ -150,3 +168,22 @@ export default new VueRouter({
         }
     ]
 })
+
+// 全局路由守卫
+
+route.beforeEach((to,from,next) => {
+    // 排除登录注册路由
+    if(to.name == "login" || to.name == "register"){
+        next()
+    }else 
+    // 如果要进入的不是登录注册，则判断token是不是为空，如果为空则重定向到login
+    if(localStorage.getItem("token") != null ){
+        next()
+    }else{
+        next({
+            name:"login"
+        })
+    }
+    
+})
+export default route

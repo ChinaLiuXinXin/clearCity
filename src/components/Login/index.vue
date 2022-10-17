@@ -1,10 +1,11 @@
 <template>
   <div class="header">
     <van-cell-group inset>
+        <h1>智慧城市</h1>
         <van-field v-model="form.username" label="用户名" placeholder="请输入用户名" />
-        <van-field v-model="form.password" label="密码" placeholder="请输入密码" />
+        <van-field v-model="form.password" label="密码" placeholder="请输入密码" type="password"/>
     </van-cell-group>
-    <van-button color="red" @click="login">登录</van-button>
+    <van-button round color="red" @click="login" class="but" size="normal">登录</van-button>
   </div>
 </template>
 
@@ -55,5 +56,8 @@
 <style scoped>
     .header{
         margin-top: 50%;
+    }
+    .but{
+        margin-top: 10%;
     }
 </style>

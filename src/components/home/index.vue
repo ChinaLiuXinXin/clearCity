@@ -44,6 +44,8 @@ export default {
         console.log(data)
       },
       showNav(data){
+        // 调用全局事件总线，让用户菜单显示
+        
         this.$router.push({
           name:data
         })

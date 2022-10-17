@@ -3,6 +3,8 @@ import axios from "axios";
 import nprogress from "nprogress";
 //引入相关进度条的样式
 import "nprogress/nprogress.css";
+
+
 // requests是带token的
 let requests = axios.create({
     baseURL:'http://218.7.112.123:10001/prod-api/api',
@@ -22,8 +24,10 @@ let api_one = axios.create({
 
 // 登录注册放行，不进行请求拦截
 
+
 // 请求拦截器
 requests.interceptors.request.use((config) => {
+    
     nprogress.start();
     // 请求时带上token
     let token = localStorage.getItem("token")
@@ -40,6 +44,10 @@ requests.interceptors.request.use((config) => {
 
 // 响应拦截器
 requests.interceptors.response.use((config) => {
+    // 如果出现没有权限的情况，将token清空
+    if(config.data.code == 401){
+        localStorage.removeItem("token")
+    }
     nprogress.done();
     return config;
 },(error) => {

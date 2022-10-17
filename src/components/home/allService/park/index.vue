@@ -32,7 +32,6 @@ export default {
     },
     beforeMount(){
       // 请求停车场数据
-
       // 跳转到停车场页面
       this.$router.push({
         name:'parking',

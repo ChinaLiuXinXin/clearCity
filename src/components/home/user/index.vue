@@ -1,9 +1,8 @@
 <template>
   <div class="head">
-    <van-cell-group inset class="head_nav" >
+    <van-cell-group inset class="head_nav" v-if="show_meta">
       <div class="nav_img">
         <div>
-          <!-- <img :src="`http://218.7.112.123:10001/prod-api`+userMesage().avatar"/> -->
           <van-image round
           :src="`http://218.7.112.123:10001/prod-api`+userMesage.avatar"
           width="5rem"
@@ -16,24 +15,23 @@
       <!-- <van-cell title="用户名">
         <van-icon name="arrow"></van-icon>
       </van-cell> -->
-      <van-cell title="个人信息"  is-link value="" @click="point"></van-cell>
-      <van-cell title="订单列表" is-link value=""></van-cell>
-      <van-cell title="修改密码" is-link value=""></van-cell>
-      <van-cell title="页面反馈" is-link value=""></van-cell>
-      <van-cell title="退出登录" is-link value=""></van-cell>
+      <van-cell title="个人信息"  is-link value="" @click="point(`usermesage`)"></van-cell>
+      <van-cell title="订单列表" is-link value="" @click="point()"></van-cell>
+      <van-cell title="修改密码" is-link value="" @click="point(`pswpage`)"></van-cell>
+      <van-cell title="页面反馈" is-link value="" @click="point()"></van-cell>
+      <van-cell title="退出登录" is-link value="" @click="point(`login`)"></van-cell>
     </van-cell-group>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import {
-    getUserMesage
-  } from "@/api/user_api"
   import {mapState} from "vuex"
   export default {
       name:"User",
       data(){
         return{
+          show_meta:true
         }
       },
       methods:{
@@ -41,10 +39,13 @@
         // isMan(){
         //   return this.userMesage.sex == 0 ? "男":"女"
         // }
-        point(){
-          this.$store.dispatch("home/userMesage")
+        
+        // 跳转到指定的位置
+        point(value){
+          // 将菜单隐藏
+          this.show_meta = false
           this.$router.push({
-            name:""
+            name:value
           })
         }
       },
@@ -54,10 +55,14 @@
         return this.userMesage.sex == 0 ? "男":"女"
       }
      },
-      // beforeCreate(){
-      //   // 在发请求之前调用vuex仓库中的方法，获取到用户数据
-      
-      // }
+     mounted(){
+      this.show_meta = true
+      this.$store.dispatch("home/userMesage")
+      // 全局事件总线
+      this.$bus.$on("test",(params) => {
+        this.show_meta = params
+      })
+     }
   }
 </script>
 

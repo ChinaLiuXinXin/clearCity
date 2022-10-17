@@ -7,6 +7,11 @@ import axios from "axios"
 import "vant/lib/index.css"
 import {Dialog} from "vant"
 
+//将自定义组件定义为全局组件
+import TopHead from "@/slots/topHead"
+
+Vue.component(TopHead.name,TopHead)
+
 // 注册vant全局组件
 import {
   Col,
@@ -17,7 +22,8 @@ import {
   Cell,
   Image,
   NavBar,
-  Search
+  Search,
+  Field
 } from "vant"
 
 Vue.use(Col)
@@ -29,6 +35,7 @@ Vue.use(Cell)
 Vue.use(Image)
 Vue.use(NavBar)
 Vue.use(Search)
+Vue.use(Field)
 
 Vue.prototype.$http = "http://218.7.112.123:10001/"
 
@@ -42,6 +49,8 @@ new Vue({
     Vue.prototype.$axios = axios
     // 将弹窗绑定到vue原型上
     Vue.prototype.$dialog = Dialog
+    // 安装全局事件总线
+    Vue.prototype.$bus = this
   }
 
 }).$mount('#app')
