@@ -11,12 +11,14 @@ Vue.use(Vuex);
 // 引入模块
 import login from './login';
 import home from "./home";
-import park from "./home/park"
+import park from "./home/park";
+import user from "./home/user";
 // 创建并暴露store
 export default new Vuex.Store({
     modules:{
         home,
         login,
-        park
+        park,
+        user
     }
 })

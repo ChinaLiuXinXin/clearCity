@@ -23,7 +23,10 @@ import {
   Image,
   NavBar,
   Search,
-  Field
+  Field,
+  RadioGroup,
+  Radio,
+  Form
 } from "vant"
 
 Vue.use(Col)
@@ -36,6 +39,9 @@ Vue.use(Image)
 Vue.use(NavBar)
 Vue.use(Search)
 Vue.use(Field)
+Vue.use(RadioGroup),
+Vue.use(Radio)
+Vue.use(Form)
 
 Vue.prototype.$http = "http://218.7.112.123:10001/"
 

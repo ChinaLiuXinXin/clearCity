@@ -1,6 +1,6 @@
 <template>
   <div class="head">
-    <van-cell-group inset class="head_nav" v-if="show_meta">
+    <!-- <van-cell-group inset class="head_nav" v-if="show_meta">
       <div class="nav_img">
         <div>
           <van-image round
@@ -10,17 +10,17 @@
           fit="cover"/>
         </div>
         <h2>{{userMesage.nickName}}</h2>
-      </div>
+      </div> -->
       <!-- 账户、个人信息页面入口、订单列表页面入口、修改密码页面入口、意见反馈页面入口，点击退出按钮可退出登录。 -->
       <!-- <van-cell title="用户名">
         <van-icon name="arrow"></van-icon>
       </van-cell> -->
-      <van-cell title="个人信息"  is-link value="" @click="point(`usermesage`)"></van-cell>
-      <van-cell title="订单列表" is-link value="" @click="point()"></van-cell>
+      <!-- <van-cell title="个人信息"  is-link value="" @click="point(`usermesage`)"></van-cell>
+      <van-cell title="订单列表" is-link value="" @click="point(`orderlist`)"></van-cell>
       <van-cell title="修改密码" is-link value="" @click="point(`pswpage`)"></van-cell>
       <van-cell title="页面反馈" is-link value="" @click="point()"></van-cell>
       <van-cell title="退出登录" is-link value="" @click="point(`login`)"></van-cell>
-    </van-cell-group>
+    </van-cell-group> -->
     <router-view></router-view>
   </div>
 </template>
@@ -31,7 +31,7 @@
       name:"User",
       data(){
         return{
-          show_meta:true
+          // show_meta:true
         }
       },
       methods:{
@@ -44,6 +44,11 @@
         point(value){
           // 将菜单隐藏
           this.show_meta = false
+          // 如果是跳转到登录界面，则将token清空
+          if(value == "login"){
+            localStorage.removeItem("token")
+          }
+          // 
           this.$router.push({
             name:value
           })
@@ -59,8 +64,11 @@
       this.show_meta = true
       this.$store.dispatch("home/userMesage")
       // 全局事件总线
-      this.$bus.$on("test",(params) => {
-        this.show_meta = params
+      // this.$bus.$on("test",(params) => {
+      //   this.show_meta = params
+      // })
+      this.$router.push({
+        name:"usermenu"
       })
      }
   }

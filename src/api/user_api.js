@@ -28,6 +28,14 @@ const putUserPassword = (data) => {
     })
 }
 
+// 查询所有订单
+const getAllOrder = (response) => {
+    return requests({
+        url:"/allorder/list",
+        method:"get"
+    })
+}
+
 // 意见反馈
 const putIdea = (data) => {
     return requests({
@@ -41,5 +49,6 @@ export {
     getUserMesage,
     putUserMesage,
     putUserPassword,
-    putIdea
+    putIdea,
+    getAllOrder
 }

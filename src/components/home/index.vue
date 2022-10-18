@@ -1,6 +1,7 @@
 <template>
   <div class="home">
       <router-view class="router_view"></router-view>
+      
     <!-- 底部导航栏 -->
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o" @click="showNav(route_mesage.head)">首页</van-tabbar-item>
@@ -33,7 +34,7 @@ export default {
         // $emit("click-tab", "") 子组件
         // 跳转路由的信息
         route_mesage:{
-          user:"user",
+          user:"usermenu",
           head:"head",
         },
         active:""

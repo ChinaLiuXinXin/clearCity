@@ -23,6 +23,12 @@ const route =  new VueRouter({
                     component:User,
                     children:[
                         {
+                            // 用户菜单界面
+                            path:"usermenu",
+                            name:"usermenu",
+                            component: ()=> import("@/components/home/user/usermenu")
+                        },
+                        {
                             // 用户信息页面
                             path:"usermesage",
                             name:"usermesage",
@@ -33,6 +39,18 @@ const route =  new VueRouter({
                             path:"pswpage",
                             name:"pswpage",
                             component: ()=> import("@/components/home/user/PswPage") 
+                        },
+                        {
+                            // 订单列表
+                            path:"orderlist",
+                            name:"orderlist",
+                            component: ()=> import("@/components/home/user/orderList")
+                        },
+                        {
+                            // 反馈页面
+                            path:"feedback",
+                            name:"feedback",
+                            component: ()=> import("@/components/home/user/feedback")
                         }
                     ]
                 },
